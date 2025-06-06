@@ -1,0 +1,10 @@
+#!/bin/bash
+
+available=$(free -m | awk '/^Mem:/ { print $7 }')
+used=$(free -m | awk '/^Mem:/ { print $3 }')
+
+if [ "$available" -ge 1024 ]; then
+  exit 33
+fi
+
+echo "{\"full_text\": \"MEM ${used}MB\", \"color\": \"#FF0000\"}"

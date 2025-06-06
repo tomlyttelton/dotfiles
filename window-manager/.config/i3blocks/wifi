@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Get SSID of the currently active Wi-Fi connection
+ssid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
+
+# Get signal strength of the connected SSID
+signal=$(nmcli -t -f ssid,signal dev wifi | grep "^$ssid" | cut -d: -f2 | head -n 1)
+
+if [ -z "$ssid" ] || [ -z "$signal" ]; then
+  exit 33
+fi
+
+echo "$ssid (${signal}%)"

@@ -1,0 +1,55 @@
+# i3blocks config file
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# Network interface monitoring
+[iface]
+label=IP
+interval=10
+
+[wifi]
+label=WIFI
+command=~/.config/i3blocks/wifi
+interval=10
+
+# CPU — only shown if usage > 50%
+[cpu]
+label=CPU
+command=~/.config/i3blocks/cpu
+interval=10
+
+[temperature]
+label=TEMP
+command=~/.config/i3blocks/temperature
+interval=30
+
+# Memory — only shown if available < 1GB
+[memory]
+label=MEM
+command=~/.config/i3blocks/memory
+interval=30
+
+# Disk usage
+[disk]
+label=DISK
+command=~/.config/i3blocks/disk
+interval=30
+
+# Battery — only shown if discharging and <25%
+[battery]
+label=BAT
+command=~/.config/i3blocks/battery
+interval=30
+
+# Time: California
+[time_pst]
+label=PST
+command=TZ=America/Los_Angeles date '+%Y-%m-%d %H:%M'
+interval=5
+
+# Time: UK
+[time_gmt]
+label=GMT
+command=TZ=Europe/London date '+%Y-%m-%d %H:%M'
+interval=5

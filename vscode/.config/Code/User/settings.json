@@ -1,0 +1,19 @@
+{
+  "bazel.executable": "bazelisk",
+  "bazel.buildifierExecutable": "/home/tom/go/bin/buildifier",
+  "explorer.confirmDelete": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "github.copilot.chat.languageContext.fix.typescript.enabled": true,
+  "github.copilot.chat.languageContext.inline.typescript.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "git.openRepositoryInParentFolders": "always",
+  "python.analysis.typeCheckingMode": "standard",
+  "makefile.configureOnOpen": true
+}

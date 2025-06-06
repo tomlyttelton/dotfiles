@@ -1,0 +1,17 @@
+{
+  "bazel.executable": "bazelisk",
+  "bazel.buildifierExecutable": "/home/tom/go/bin/buildifier",
+  "explorer.confirmDelete": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "diffEditor.codeLens": true,
+  "git.autofetch": true,
+  "editor.formatOnSave": true,
+  "makefile.configureOnOpen": true,
+  "editor.inlineSuggest.enabled": false
+}

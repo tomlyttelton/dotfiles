@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BAT="/sys/class/power_supply/BAT0"
+capacity=$(cat "$BAT/capacity")
+status=$(cat "$BAT/status")
+
+if [ "$status" != "Discharging" ] || [ "$capacity" -ge 25 ]; then
+  exit 33
+fi
+
+echo "{\"full_text\": \"BAT ${capacity}% ($status)\", \"color\": \"#FF0000\"}"

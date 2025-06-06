@@ -1,0 +1,141 @@
+# i3 config file (v4)
+# https://i3wm.org/docs/userguide.html
+
+set $mod Mod4
+
+font pango:DejaVu Sans Mono 10
+
+# Refresh i3blocks (for volume/mic updates)
+set $refresh_i3blocks pkill -SIGRTMIN+10 i3blocks
+
+# Audio control
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3blocks
+
+floating_modifier $mod
+focus_follows_mouse no
+gaps inner 4
+gaps top -4
+
+# --- App Shortcuts ---
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+o exec google-chrome
+bindsym $mod+Shift+o exec google-chrome --incognito
+bindsym $mod+p exec subl -n
+bindsym $mod+i exec ~/bin/Cursor.AppImage
+bindsym $mod+Shift+i exec code
+
+# --- Focus movement ---
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# --- Output switching ---
+bindsym $mod+Tab focus output right
+bindsym $mod+Shift+Tab focus output left
+
+# --- Move windows ---
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# --- Layout & floating ---
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# --- Resize mode ---
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- Workspaces ---
+set $ws1 "1:Bear"
+set $ws2 "2:Panda"
+set $ws3 "3:Chollima"
+set $ws4 "4:Crane"
+set $ws5 "5:Kitten"
+set $ws6 "6:Buffalo"
+set $ws7 "7:Tiger"
+set $ws8 "8:Leopard"
+set $ws9 "9:Jackal"
+set $ws0 "10:Spider"
+
+set $laptop eDP-1
+workspace $ws1 output $laptop
+workspace $ws2 output $laptop
+
+# Workspace switching
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# Move window to workspace
+bindsym $mod+Shift+exclam move workspace $ws1
+bindsym $mod+Shift+quotedbl move workspace $ws2
+bindsym $mod+Shift+sterling move workspace $ws3
+bindsym $mod+Shift+dollar move workspace $ws4
+bindsym $mod+Shift+percent move workspace $ws5
+bindsym $mod+Shift+asciicircum move workspace $ws6
+bindsym $mod+Shift+ampersand move workspace $ws7
+bindsym $mod+Shift+asterisk move workspace $ws8
+bindsym $mod+Shift+parenleft move workspace $ws9
+bindsym $mod+Shift+parenright move workspace $ws0
+
+# --- Session management ---
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# --- Core actions ---
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+X exec i3lock -n -c 000000
+
+# --- Status bar using i3blocks ---
+bar {
+    status_command i3blocks
+}
+
+# --- Startup commands ---
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec_always --no-startup-id nm-applet
+exec_always --no-startup-id ~/.config/i3/screenlayout.sh
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id setxkbmap gb
