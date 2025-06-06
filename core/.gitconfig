@@ -9,3 +9,11 @@
 	editor = vim
 [init]
 	defaultBranch = main
+[alias]
+	sync = "!f() { git fetch origin && git rebase origin/main; }; f"
+	wtf = log --graph --pretty=format:'%C(yellow)%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(auto)%d%Creset' --all
+	tidy = !git fetch origin main && git branch --merged origin/main | grep -vE \"^(\\\\*|main)\" | xargs -r git branch -d
+	amend = commit --amend --no-edit
+	undo = reset HEAD~1
+	last = log -1 HEAD
+	cleanup = !git remote prune origin && git branch -vv | awk \"/: gone]/{print \\$1}\" | xargs -r git branch -d
