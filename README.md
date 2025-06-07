@@ -3,7 +3,7 @@
 Instructions for setting up a personal Linux environment.
 
 - **Shell**: `.bashrc`, `.gitconfig`
-- **Window manager**: i3 + i3blocks
+- **Window manager**: i3
 - **Editors**: Cursor and VS Code
 
 ---
@@ -34,16 +34,51 @@ sudo apt-get install arandr lxappearance feh
 
 These are expected by keybindings or common workflows:
 
-* [Google Chrome](https://www.google.com/chrome/)
-* [Spotify](https://www.spotify.com/)
-* [Signal](https://signal.org/)
-* [Sublime Text](https://www.sublimetext.com/)
-* [VS Code](https://code.visualstudio.com/)
-* [Cursor](https://cursor.sh/)
+### [Google Chrome](https://www.google.com/chrome/)
 
-For Cursor:
+```bash
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+```
 
-1. Place the AppImage at `~/bin/Cursor.AppImage`.
+### [Spotify](https://www.spotify.com/)
+
+```bash
+curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+sudo apt-get update && sudo apt-get install spotify-client
+```
+
+### [Signal](https://signal.org/)
+
+```bash
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' |\
+  sudo tee /etc/apt/sources.list.d/signal-xenial.list
+
+sudo apt update && sudo apt install signal-desktop
+```
+
+### [Sublime Text](https://www.sublimetext.com/)
+
+```bash
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
+echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc' | sudo tee /etc/apt/sources.list.d/sublime-text.sources
+sudo apt-get update && sudo apt-get install sublime-text
+```
+
+### [VS Code](https://code.visualstudio.com/)
+### [Cursor](https://cursor.sh/)
+
+```bash
+sudo apt update && sudo apt install libfuse2
+chmod +x ~/Applications/cursor.AppImage
+```
+
+1. [Download](https://www.cursor.com) and place the AppImage at `~/bin/Cursor.AppImage`.
 
 2. (Optional) Create an AppArmor profile at `/etc/apparmor.d/cursor-appimage`:
 
