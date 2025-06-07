@@ -95,3 +95,4 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Load local overrides if present (not tracked in Git)
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
+. "$HOME/.cargo/env"

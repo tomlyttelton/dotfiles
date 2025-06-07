@@ -11,13 +11,14 @@ Instructions for setting up a personal Linux environment.
 ## Install Dependencies
 
 ```bash
+
 sudo apt-get install \
-  curl stow vim pactl nemo imagemagick libnotify-bin \
-  i3 i3blocks i3lock dmenu xss-lock x11-xserver-utils \
+  curl stow vim nemo imagemagick libnotify-bin \
+  i3 i3lock i3status suckless-tools xss-lock x11-xserver-utils \
   nitrogen pulseaudio pulseaudio-utils alsa-utils \
   network-manager network-manager-gnome nm-tray \
-  x11-utils x11-xkb-utils setxkbmap xrandr fonts-dejavu-core \
-  gnome-keyring
+  x11-utils x11-xkb-utils fonts-dejavu-core \
+  gnome-keyring git net-tools
 ````
 
 
@@ -76,7 +77,7 @@ For Cursor:
 Each directory mirrors the structure expected in `~/.config/` or `$HOME`.
 
 * `core/` – Shell settings (`.bashrc`, `.gitconfig`)
-* `window-manager/` – i3 + i3blocks configuration
+* `i3/` – i3 configuration
 * `vscode/` – VS Code settings
 * `cursor/` – Cursor editor settings
 

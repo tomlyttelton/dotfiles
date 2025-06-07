@@ -3,7 +3,7 @@
 
 set $mod Mod4
 
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 # Refresh i3blocks (for volume/mic updates)
 set $refresh_i3blocks pkill -SIGRTMIN+10 i3blocks
@@ -128,9 +128,9 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+X exec i3lock -n -c 000000
 
-# --- Status bar using i3blocks ---
+# --- Status bar ---
 bar {
-    status_command i3blocks
+    status_command i3status
 }
 
 # --- Startup commands ---
@@ -139,3 +139,4 @@ exec_always --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/i3/screenlayout.sh
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id setxkbmap gb
+

@@ -1,0 +1,74 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 5
+    color_good = "#FFFFFF"
+    color_degraded = "#FFFF00"
+    color_bad = "#FF0000"
+}
+
+order = "ethernet enp132s0"
+order += "wireless wlan0"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+order += "memory"
+order += "disk /"
+order += "battery"
+order += "tztime bst"
+order += "tztime pst"
+
+ethernet "enp132s0" {
+    format_up = "E: %ip (%speed)"
+    format_down = ""
+}
+
+wireless "wlan0" {
+    format_up = "WIFI %essid% (%signal%)"
+    format_down = ""
+}
+
+cpu_usage {
+    format = ""
+    degraded_threshold = 25
+    format_above_threshold = "CPU %usage"
+    max_threshold = 75
+    format_above_threshold = "CPU %usage"
+}
+
+cpu_temperature 0 {
+    format = ""
+    format_above_threshold = "T: %degrees °C"
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input"
+}
+
+memory {
+    format = ""
+    threshold_degraded = "1G"
+    format_degraded = "MEM %used/%total"
+}
+
+disk "/" {
+    format = ""
+    low_threshold = 10
+    threshold_type = "percentage_avail"
+    format_below_threshold = "DISK %avail"
+}
+
+battery "bat" {
+    format = "BAT %status %percentage"
+    format_down = ""
+    low_threshold = 25
+    threshold_type = "percentage"
+    last_full_capacity = true
+}
+
+tztime bst {
+    format = "%Y-%m-%d %H:%M(🇬🇧 BST)"
+    timezone = "Europe/London"
+}
+
+tztime pst {
+    format = "%Y-%m-%d %H:%M(🏴󠁵󠁳󠁣󠁡󠁿 PST)"
+    timezone = "America/Los_Angeles"
+}
+
