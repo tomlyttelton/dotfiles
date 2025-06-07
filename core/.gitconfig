@@ -1,5 +1,5 @@
 [credential]
-	helper = store
+	helper = !gh auth git-credential
 [user]
 	email = tom.lyttelton@gmail.com
 	name = Tom Lyttelton
