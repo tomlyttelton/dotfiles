@@ -139,4 +139,3 @@ exec_always --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/i3/screenlayout.sh
 exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id setxkbmap gb
-
