@@ -10,7 +10,15 @@
 [init]
 	defaultBranch = main
 [alias]
-	sync = "!f() { git fetch origin && git rebase origin/main; }; f"
+	sync = "!f() { \
+  branch=$(git rev-parse --abbrev-ref HEAD); \
+  default=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'); \
+  echo \"Syncing $branch with origin/$default using merge...\"; \
+  git stash push -u -m 'sync-stash' && \
+  git fetch origin && \
+  git merge origin/$default --no-edit && \
+  git stash pop || true; \
+}; f"
 	wtf = log --graph --pretty=format:'%C(yellow)%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset %C(auto)%d%Creset' --all
 	tidy = !git fetch origin main && git branch --merged origin/main | grep -vE \"^(\\\\*|main)\" | xargs -r git branch -d
 	amend = commit --amend --no-edit

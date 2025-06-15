@@ -13,5 +13,7 @@
   "git.autofetch": true,
   "editor.formatOnSave": true,
   "makefile.configureOnOpen": true,
-  "editor.inlineSuggest.enabled": false
+  "editor.inlineSuggest.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "git.ignoreRebaseWarning": true
 }

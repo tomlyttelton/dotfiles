@@ -134,6 +134,8 @@ bar {
 }
 
 # --- Startup commands ---
+exec --no-startup-id seahorse
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg
 exec_always --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec_always --no-startup-id nm-applet
 exec_always --no-startup-id ~/.config/i3/screenlayout.sh
