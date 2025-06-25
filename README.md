@@ -8,25 +8,30 @@ Instructions for setting up a personal Linux environment.
 
 ---
 
+## Getting Started
+
+```bash
+sudo apt install git i3
+```
+
+Log into i3.
+
+```bash
+git clone https://github.com/tomlyttelton/dotfiles.git
+mv dotfiles .dotfiles
+```
+
 ## Install Dependencies
 
 ```bash
-
-sudo apt-get install \
-  curl stow vim nemo imagemagick libnotify-bin \
-  i3 i3lock i3status suckless-tools xss-lock x11-xserver-utils \
+sudo apt install \
+  arandr curl stow vim nemo imagemagick libnotify-bin \
+  i3lock i3status suckless-tools xss-lock x11-xserver-utils \
   nitrogen pulseaudio pulseaudio-utils alsa-utils \
   network-manager network-manager-gnome nm-tray \
   x11-utils x11-xkb-utils fonts-dejavu-core \
-  gnome-keyring git net-tools
+  gh gnome-keyring git net-tools
 ````
-
-
-### Optional extras
-
-```bash
-sudo apt-get install arandr lxappearance feh
-```
 
 ---
 
@@ -39,6 +44,29 @@ These are expected by keybindings or common workflows:
 ```bash
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
+```
+
+### [Sublime Text](https://www.sublimetext.com/)
+
+```bash
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
+echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc' | sudo tee /etc/apt/sources.list.d/sublime-text.sources
+sudo apt-get update && sudo apt-get install sublime-text
+
+xdg-mime default sublime_text.desktop text/plain
+```
+
+### Languages
+
+```bash
+sudo apt install default-jre golang-go npm python3
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install 20
+nvm use 20
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 ### [Spotify](https://www.spotify.com/)
@@ -62,23 +90,18 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
 sudo apt update && sudo apt install signal-desktop
 ```
 
-### [Sublime Text](https://www.sublimetext.com/)
-
-```bash
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo tee /etc/apt/keyrings/sublimehq-pub.asc > /dev/null
-echo -e 'Types: deb\nURIs: https://download.sublimetext.com/\nSuites: apt/stable/\nSigned-By: /etc/apt/keyrings/sublimehq-pub.asc' | sudo tee /etc/apt/sources.list.d/sublime-text.sources
-sudo apt-get update && sudo apt-get install sublime-text
-```
-
 ### [VS Code](https://code.visualstudio.com/)
 ### [Cursor](https://cursor.sh/)
 
 ```bash
 sudo apt update && sudo apt install libfuse2
-chmod +x ~/Applications/cursor.AppImage
 ```
 
 1. [Download](https://www.cursor.com) and place the AppImage at `~/bin/Cursor.AppImage`.
+
+   ```bash
+   chmod +x ~/bin/cursor.AppImage
+   ```
 
 2. (Optional) Create an AppArmor profile at `/etc/apparmor.d/cursor-appimage`:
 
@@ -143,7 +166,7 @@ stow core window-manager vscode cursor
 * You may need to customize workspace names or keybindings in `i3/config`.
 * Cursor and VS Code settings are safe to sync, but watch for extension or version mismatches.
 * `i3-sensible-terminal` uses your system default terminal unless overridden via the `$TERMINAL` environment variable.
-
+* `sudo apt remove gstreamer1.0-pipewire` might be useful if the camera doesn't work
 ---
 
 ## License
