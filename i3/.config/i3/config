@@ -24,7 +24,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+o exec google-chrome
 bindsym $mod+Shift+o exec google-chrome --incognito
 bindsym $mod+p exec subl -n
-bindsym $mod+i exec ~/bin/Cursor.AppImage
+bindsym $mod+i exec cursor
 bindsym $mod+Shift+i exec code
 
 # --- Focus movement ---

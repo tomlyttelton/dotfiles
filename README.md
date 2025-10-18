@@ -97,36 +97,11 @@ sudo apt update && sudo apt install signal-desktop
 sudo apt update && sudo apt install libfuse2
 ```
 
-1. [Download](https://www.cursor.com) and place the AppImage at `~/bin/Cursor.AppImage`.
+[Download](https://www.cursor.com/download) 
 
-   ```bash
-   chmod +x ~/bin/cursor.AppImage
-   ```
-
-2. (Optional) Create an AppArmor profile at `/etc/apparmor.d/cursor-appimage`:
-
-   ```bash
-   sudo nano /etc/apparmor.d/cursor-appimage
-   ```
-
-   ```apparmor
-   # Allows everything; gives a named label instead of "unconfined"
-   abi <abi/4.0>,
-   include <tunables/global>
-
-   profile cursor /home/*/bin/Cursor.AppImage flags=(unconfined) {
-     userns,
-
-     # Site-specific additions and overrides. See local/README for details.
-     include if exists <local/cursor>
-   }
-   ```
-
-3. Then reload AppArmor:
-
-   ```bash
-   sudo apparmor_parser -r /etc/apparmor.d/cursor-appimage
-   ```
+```bash
+sudo dpkg -i Downloads/cursor_.*
+```
 
 ---
 
