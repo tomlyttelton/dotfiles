@@ -128,7 +128,7 @@ cd ~/dotfiles
 Symlink files using [GNU Stow](https://www.gnu.org/software/stow/):
 
 ```bash
-stow core window-manager vscode cursor
+stow core window-manager gtk vscode cursor
 ```
 
 > This will symlink files like `core/.bashrc` to `~/.bashrc`.
