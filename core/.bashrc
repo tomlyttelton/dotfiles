@@ -100,3 +100,32 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+###
+# Compass (Rclone) Aliases
+# Local directory: ~/compass
+# Remote:          compass:
+###
+
+# Show differences without modifying anything (dry-run)
+alias compass-status='rclone sync --dry-run -v ~/compass compass:'
+
+# Pull from remote → local (remote is source of truth)
+alias compass-pull="rclone sync -v compass: ~/compass --drive-use-trash"
+
+# Push from local → remote (local is source of truth)
+# Includes protections against catastrophic deletes
+alias compass-push="
+  rclone sync -v \
+    --drive-use-trash \
+    --max-delete=10 \
+    ~/compass compass:"
+
+# One-shot copy (no deletes), good for quick uploads
+alias compass-copy="rclone copy -v ~/compass compass:"
+
+# List remote files quickly
+alias compass-ls='rclone ls compass:'
+
+# Mount remote Compass folder (useful for debugging)
+alias compass-mount='rclone mount compass: ~/compass-remote --vfs-cache-mode writes'
