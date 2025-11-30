@@ -6,8 +6,6 @@ Instructions for setting up a personal Linux environment.
 - **Window manager**: i3
 - **Editors**: Cursor and VS Code
 
----
-
 ## Getting Started
 
 ```bash
@@ -30,10 +28,9 @@ sudo apt install \
   nitrogen pulseaudio pulseaudio-utils alsa-utils \
   network-manager network-manager-gnome nm-tray \
   x11-utils x11-xkb-utils fonts-dejavu-core \
-  gh gnome-keyring git net-tools
+  gh gnome-keyring git net-tools \
+  rclone
 ````
-
----
 
 ## Install Additional Applications
 
@@ -103,9 +100,7 @@ sudo apt update && sudo apt install libfuse2
 sudo dpkg -i Downloads/cursor_.*
 ```
 
----
-
-## Structure
+## Setup Config
 
 Each directory mirrors the structure expected in `~/.config/` or `$HOME`.
 
@@ -114,9 +109,7 @@ Each directory mirrors the structure expected in `~/.config/` or `$HOME`.
 * `vscode/` – VS Code settings
 * `cursor/` – Cursor editor settings
 
----
-
-## Installation
+### Installation
 
 Clone the repository:
 
@@ -134,7 +127,29 @@ stow core window-manager gtk vscode cursor
 > This will symlink files like `core/.bashrc` to `~/.bashrc`.
 > Rerun `stow` any time you update dotfiles.
 
----
+### Setup Compass
+
+Retrieve the `rclone.conf` from secrets and place it at:
+
+```
+
+mkdir -p ~/.config/rclone
+cp /path/to/rclone.conf ~/.config/rclone/rclone.conf
+
+````
+
+Create the local Compass directory:
+
+```bash
+mkdir -p ~/compass
+compass-pull
+````
+
+This populates `~/compass` with the contents of your Drive-based Compass folder.
+
+> **Important:** `rclone sync` is directional.
+> `compass-push` will overwrite files in Drive to match your **local** folder.
+> If unsure, run `compass-status` or use `rclone copy` for a no-delete upload.
 
 ## Notes
 
@@ -142,7 +157,6 @@ stow core window-manager gtk vscode cursor
 * Cursor and VS Code settings are safe to sync, but watch for extension or version mismatches.
 * `i3-sensible-terminal` uses your system default terminal unless overridden via the `$TERMINAL` environment variable.
 * `sudo apt remove gstreamer1.0-pipewire` might be useful if the camera doesn't work
----
 
 ## License
 
