@@ -1,0 +1,48 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "DejaVu Sans Mono";
+  font-size: 11pt;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #000000;
+  color: #ffffff;
+}
+
+#workspaces button {
+  padding: 0 4px;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+  background: #333333;
+}
+
+#workspaces button.urgent {
+  color: #ff0000;
+}
+
+#mode,
+#clock,
+#network,
+#tray,
+#cpu,
+#temperature,
+#memory,
+#disk,
+#battery {
+  padding: 0 6px;
+}
+
+.warning {
+  color: #ffff00;
+}
+
+.critical {
+  color: #ff0000;
+}

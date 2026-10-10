@@ -1,0 +1,144 @@
+# Sway config
+# man 5 sway
+
+set $mod Mod4
+
+font pango:Inter 11
+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+floating_modifier $mod normal
+focus_follows_mouse no
+
+set $term foot
+set $menu wofi --show drun
+
+# --- App Shortcuts ---
+bindsym $mod+Return exec $term
+bindsym $mod+o exec google-chrome
+bindsym $mod+Shift+o exec google-chrome --incognito
+bindsym $mod+p exec subl -n
+bindsym $mod+i exec cursor
+bindsym $mod+Shift+i exec code
+
+# --- Focus movement ---
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# --- Output switching ---
+bindsym $mod+Tab focus output right
+bindsym $mod+Shift+Tab focus output left
+
+# --- Move windows ---
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# --- Layout & floating ---
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# --- Resize mode ---
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- Workspaces ---
+set $ws1 "1:Turing"
+set $ws2 "2:Hopper"
+set $ws3 "3:Dijkstra"
+set $ws4 "4:Lamport"
+set $ws5 "5:Thompson"
+set $ws6 "6:Ritchie"
+set $ws7 "7:Shannon"
+set $ws8 "8:Liskov"
+set $ws9 "9:Hinton"
+set $ws0 "10:Lovelace"
+
+# Workspace switching
+bindsym --to-code $mod+1 workspace $ws1
+bindsym --to-code $mod+2 workspace $ws2
+bindsym --to-code $mod+3 workspace $ws3
+bindsym --to-code $mod+4 workspace $ws4
+bindsym --to-code $mod+5 workspace $ws5
+bindsym --to-code $mod+6 workspace $ws6
+bindsym --to-code $mod+7 workspace $ws7
+bindsym --to-code $mod+8 workspace $ws8
+bindsym --to-code $mod+9 workspace $ws9
+bindsym --to-code $mod+0 workspace $ws0
+
+# Move window to workspace
+bindsym --to-code $mod+Shift+1 move container to workspace $ws1
+bindsym --to-code $mod+Shift+2 move container to workspace $ws2
+bindsym --to-code $mod+Shift+3 move container to workspace $ws3
+bindsym --to-code $mod+Shift+4 move container to workspace $ws4
+bindsym --to-code $mod+Shift+5 move container to workspace $ws5
+bindsym --to-code $mod+Shift+6 move container to workspace $ws6
+bindsym --to-code $mod+Shift+7 move container to workspace $ws7
+bindsym --to-code $mod+Shift+8 move container to workspace $ws8
+bindsym --to-code $mod+Shift+9 move container to workspace $ws9
+bindsym --to-code $mod+Shift+0 move container to workspace $ws0
+
+# --- Session management ---
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# --- Core actions ---
+bindsym $mod+d exec $menu
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+X exec swaylock -f -c 000000
+
+# output * bg ~/Pictures/wallpaper.png fill
+output * bg #000000 solid_color
+
+input type:keyboard {
+    xkb_layout gb
+}
+
+seat * xcursor_theme Yaru 24
+
+# --- Startup commands ---
+exec kanshi
+exec waybar
+exec swayidle -w \
+    timeout 600 'swaylock -f -c 000000' \
+    timeout 900 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000' \
+    lock 'swaylock -f -c 000000'
+exec nm-applet
