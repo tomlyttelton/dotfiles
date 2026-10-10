@@ -160,8 +160,18 @@ This allows Cursor to receive updates through APT.
 Clone the repository:
 
 ```bash
+<<<<<<< HEAD
 git clone https://github.com/tomlyttelton/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+=======
+<<<<<<< HEAD
+git clone https://github.com/tomlyttelton/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+=======
+git clone https://github.com/tomlyttelton/dotfiles.git ~/workspace/dotfiles
+cd ~/workspace/dotfiles
+>>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
+>>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 Each directory mirrors the structure expected in `$HOME` or `~/.config/`:
@@ -177,13 +187,29 @@ Symlink the configurations using [GNU Stow](https://www.gnu.org/software/stow/).
 Preview the changes:
 
 ```bash
+<<<<<<< HEAD
 stow -n -v -t ~ core sway gtk vscode cursor
+=======
+<<<<<<< HEAD
+stow -n -v -t ~ core sway gtk vscode cursor
+=======
+stow -n -v -R -t "$HOME" core sway gtk vscode cursor
+>>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
+>>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 Install:
 
 ```bash
+<<<<<<< HEAD
 stow -t ~ core sway gtk vscode cursor
+=======
+<<<<<<< HEAD
+stow -t ~ core sway gtk vscode cursor
+=======
+stow -R -t "$HOME" core sway gtk vscode cursor
+>>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
+>>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 GNU Stow creates symlinks from the repository into your home directory. For example, `core/.bashrc` becomes accessible as `~/.bashrc`.

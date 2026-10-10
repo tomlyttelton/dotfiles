@@ -3,6 +3,8 @@
 [user]
 	email = tom.lyttelton@gmail.com
 	name = Tom Lyttelton
+[pull]
+	rebase = true
 [push]
 	autoSetupRemote = true
 [core]
