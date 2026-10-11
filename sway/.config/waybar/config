@@ -1,0 +1,101 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-right": [
+    "network",
+    "cpu",
+    "temperature",
+    "memory",
+    "disk",
+    "custom/battery",
+    "clock#ca",
+    "clock#uk",
+    "tray"
+  ],
+  "sway/workspaces": {
+    "format": "{index}:{name}"
+  },
+  "sway/mode": {
+    "format": "{}",
+    "tooltip": false
+  },
+  "network": {
+    "interval": 5,
+    "format-ethernet": "E:{ipaddr}",
+    "format-wifi": "WIFI:{essid} ({signalStrength}%)",
+    "format-disconnected": "NET:Disconnected",
+    "format-disabled": "NET:Disabled",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "",
+    "format-warning": "CPU:{usage}%",
+    "format-critical": "CPU:{usage}%",
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "tooltip": false
+  },
+  "temperature": {
+    "interval": 5,
+    "hwmon-path-abs": [
+      "/sys/devices/platform/coretemp.0/hwmon",
+      "/sys/devices/pci0000:00/0000:00:18.3/hwmon"
+    ],
+    "input-filename": "temp1_input",
+    "critical-threshold": 75,
+    "format": "",
+    "format-critical": "T:{temperatureC}°C",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 5,
+    "format": "",
+    "format-warning": "MEM:{used:.1f}/{total:.1f}G",
+    "format-critical": "MEM:{used:.1f}/{total:.1f}G",
+    "states": {
+      "warning": 90,
+      "critical": 95
+    },
+    "tooltip": false
+  },
+  "disk": {
+    "interval": 30,
+    "path": "/",
+    "format": "",
+    "format-warning": "DISK:{free}",
+    "format-critical": "DISK:{free}",
+    "states": {
+      "warning": 90,
+      "critical": 95
+    },
+    "tooltip": false
+  },
+  "custom/battery": {
+    "exec": "sh -c 'exec \"$HOME/.config/waybar/battery\"'",
+    "interval": 5,
+    "return-type": "json",
+    "tooltip": false
+  },
+  "clock#ca": {
+    "timezone": "America/Los_Angeles",
+    "format": "{0:%a %d %b} 🏴󠁵󠁳󠁣󠁡󠁿 {0:%H:%M}",
+    "interval": 10,
+    "tooltip": false
+  },
+  "clock#uk": {
+    "timezone": "Europe/London",
+    "format": "{0:%a %d %b} 🇬🇧 {0:%H:%M}",
+    "interval": 10,
+    "tooltip": false
+  },
+  "tray": {
+    "spacing": 8
+  }
+}

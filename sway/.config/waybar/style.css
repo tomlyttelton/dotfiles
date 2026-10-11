@@ -1,0 +1,62 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "DejaVu Sans Mono";
+  font-size: 12pt;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #000000;
+  color: #ffffff;
+  border-top: 1px solid #444444;
+}
+
+.modules-right > widget {
+  margin: 0 4px;
+  padding-right: 4px;
+}
+
+.modules-right > widget:not(:last-child) {
+  border-right: 1px solid #555555;
+}
+
+.modules-right > widget > * {
+  padding: 4px 10px;
+}
+
+#workspaces button {
+  padding: 4px;
+  background: #222222;
+  color: #888888;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+#workspaces button.visible {
+  background: #5f676a;
+  color: #ffffff;
+}
+
+#workspaces button.focused {
+  background: #285577;
+  color: #ffffff;
+}
+
+#workspaces button.urgent {
+  color: #f38ba8;
+}
+
+.warning {
+  color: #f9e2af;
+}
+
+.critical {
+  color: #f38ba8;
+}
+
+/* Active timezone */
+#clock.ca {
+  background: #34495e;
+  color: #ffffff;
+}

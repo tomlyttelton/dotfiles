@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Sway (NVIDIA)
+Comment=Sway with --unsupported-gpu for proprietary NVIDIA drivers
+Exec=env WLR_NO_HARDWARE_CURSORS=1 sway --unsupported-gpu
+Type=Application
+DesktopNames=sway;wlroots

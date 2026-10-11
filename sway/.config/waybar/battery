@@ -1,0 +1,31 @@
+#!/bin/sh
+# Waybar's battery module logs "No batteries." on machines without one.
+# Print one JSON line when a system battery exists, and nothing otherwise.
+for dir in /sys/class/power_supply/*; do
+	[ -r "$dir/type" ] || continue
+	[ "$(cat "$dir/type")" = "Battery" ] || continue
+	if [ -r "$dir/scope" ] && [ "$(cat "$dir/scope")" = "Device" ]; then
+		continue
+	fi
+	[ -r "$dir/capacity" ] && [ -r "$dir/status" ] || continue
+
+	capacity=$(cat "$dir/capacity")
+	status=$(cat "$dir/status")
+	case "$status" in
+	Charging) label="BAT CHR ${capacity}%" ;;
+	Discharging) label="BAT DIS ${capacity}%" ;;
+	Full) label="BAT FULL ${capacity}%" ;;
+	*) label="BAT ${capacity}%" ;;
+	esac
+
+	class=""
+	if [ "$capacity" -le 10 ]; then
+		class="critical"
+	elif [ "$capacity" -le 25 ]; then
+		class="warning"
+	fi
+
+	printf '{"text":"%s","class":"%s","percentage":%s}\n' "$label" "$class" "$capacity"
+	exit 0
+done
+exit 0
