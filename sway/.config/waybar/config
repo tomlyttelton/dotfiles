@@ -11,13 +11,13 @@
     "temperature",
     "memory",
     "disk",
-    "battery",
-    "clock#uk",
+    "custom/battery",
     "clock#ca",
+    "clock#uk",
     "tray"
   ],
   "sway/workspaces": {
-    "format": "{index}:{name}"
+    "format": "[{index}:{name}]"
   },
   "sway/mode": {
     "format": "{}",
@@ -25,18 +25,18 @@
   },
   "network": {
     "interval": 5,
-    "format-ethernet": "E: {ipaddr}",
-    "format-wifi": "WIFI {essid} ({signalStrength}%)",
+    "format-ethernet": "E:{ipaddr}",
+    "format-wifi": "WIFI:{essid} ({signalStrength}%)",
     "format-disconnected": "",
     "format-disabled": "",
     "tooltip": false
   },
   "cpu": {
     "interval": 5,
-    "format": "CPU {usage}%",
+    "format": "CPU:{usage}%",
     "states": {
-      "warning": 25,
-      "critical": 75
+      "warning": 75,
+      "critical": 90
     },
     "tooltip": false
   },
@@ -45,13 +45,13 @@
     "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
     "input-filename": "temp1_input",
     "critical-threshold": 75,
-    "format": "T: {temperatureC}°C",
-    "format-critical": "T: {temperatureC}°C",
+    "format": "T:{temperatureC}°C",
+    "format-critical": "T:{temperatureC}°C",
     "tooltip": false
   },
   "memory": {
     "interval": 5,
-    "format": "MEM {used:.1f}/{total:.1f}G",
+    "format": "MEM:{used:.1f}/{total:.1f}G",
     "states": {
       "warning": 90,
       "critical": 95
@@ -61,34 +61,28 @@
   "disk": {
     "interval": 30,
     "path": "/",
-    "format": "DISK {free}",
+    "format": "DISK:{free}",
     "states": {
       "warning": 90,
       "critical": 95
     },
     "tooltip": false
   },
-  "battery": {
+  "custom/battery": {
+    "exec": "sh -c 'exec \"$HOME/.config/waybar/battery\"'",
     "interval": 5,
-    "states": {
-      "warning": 25,
-      "critical": 10
-    },
-    "format": "BAT {capacity}%",
-    "format-charging": "BAT CHR {capacity}%",
-    "format-discharging": "BAT DIS {capacity}%",
-    "format-full": "BAT FULL {capacity}%",
-    "tooltip": false
-  },
-  "clock#uk": {
-    "timezone": "Europe/London",
-    "format": "{:%Y-%m-%d %H:%M} UK",
-    "interval": 10,
+    "return-type": "json",
     "tooltip": false
   },
   "clock#ca": {
     "timezone": "America/Los_Angeles",
-    "format": "{:%Y-%m-%d %H:%M} CA",
+    "format": "[{:%a %d %b %H:%M} 🏴󠁵󠁳󠁣󠁡󠁿]",
+    "interval": 10,
+    "tooltip": false
+  },
+  "clock#uk": {
+    "timezone": "Europe/London",
+    "format": "[{:%a %H:%M} 🇬🇧]",
     "interval": 10,
     "tooltip": false
   },

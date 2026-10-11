@@ -3,7 +3,7 @@
 
 set $mod Mod4
 
-font pango:Inter 11
+font pango:Inter 12
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -133,6 +133,7 @@ input type:keyboard {
 seat * xcursor_theme Yaru 24
 
 # --- Startup commands ---
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec kanshi
 exec waybar
 exec swayidle -w \

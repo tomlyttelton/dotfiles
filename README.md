@@ -16,7 +16,7 @@ sudo apt update
 sudo apt install \
   curl wget gnupg ca-certificates stow \
   vim nemo imagemagick libnotify-bin \
-  sway swaylock swayidle kanshi waybar wofi foot brightnessctl \
+  sway swaylock swayidle kanshi waybar wdisplays wofi foot brightnessctl \
   pipewire pipewire-pulse wireplumber pulseaudio-utils alsa-utils \
   xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk \
   network-manager network-manager-gnome \
@@ -160,18 +160,8 @@ This allows Cursor to receive updates through APT.
 Clone the repository:
 
 ```bash
-<<<<<<< HEAD
-git clone https://github.com/tomlyttelton/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-=======
-<<<<<<< HEAD
-git clone https://github.com/tomlyttelton/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-=======
 git clone https://github.com/tomlyttelton/dotfiles.git ~/workspace/dotfiles
 cd ~/workspace/dotfiles
->>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
->>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 Each directory mirrors the structure expected in `$HOME` or `~/.config/`:
@@ -181,35 +171,20 @@ Each directory mirrors the structure expected in `$HOME` or `~/.config/`:
 - `gtk/` – GTK appearance settings
 - `vscode/` – VS Code settings
 - `cursor/` – Cursor settings
+- `workarounds/` – optional session files that Stow does not install
 
 Symlink the configurations using [GNU Stow](https://www.gnu.org/software/stow/).
 
 Preview the changes:
 
 ```bash
-<<<<<<< HEAD
-stow -n -v -t ~ core sway gtk vscode cursor
-=======
-<<<<<<< HEAD
-stow -n -v -t ~ core sway gtk vscode cursor
-=======
 stow -n -v -R -t "$HOME" core sway gtk vscode cursor
->>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
->>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 Install:
 
 ```bash
-<<<<<<< HEAD
-stow -t ~ core sway gtk vscode cursor
-=======
-<<<<<<< HEAD
-stow -t ~ core sway gtk vscode cursor
-=======
 stow -R -t "$HOME" core sway gtk vscode cursor
->>>>>>> 7acc29d (Preparation to upgrade to Ubuntu 26.04 LTS)
->>>>>>> e4c218a (Preparation to upgrade to Ubuntu 26.04 LTS)
 ```
 
 GNU Stow creates symlinks from the repository into your home directory. For example, `core/.bashrc` becomes accessible as `~/.bashrc`.

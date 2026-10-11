@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0;
   font-family: "DejaVu Sans Mono";
-  font-size: 11pt;
+  font-size: 12pt;
   min-height: 0;
 }
 
@@ -11,38 +11,48 @@ window#waybar {
   color: #ffffff;
 }
 
+.modules-right > widget {
+  margin: 0 4px;
+}
+
+.modules-right > widget > * {
+  padding: 0 6px;
+}
+
 #workspaces button {
   padding: 0 4px;
   background: transparent;
   color: #ffffff;
   box-shadow: none;
+  text-shadow: none;
 }
 
-#workspaces button.focused,
-#workspaces button.active {
-  background: #333333;
+#workspaces button.visible {
+  background: #555555;
 }
 
 #workspaces button.urgent {
-  color: #ff0000;
+  color: #f38ba8;
 }
 
-#mode,
-#clock,
-#network,
-#tray,
-#cpu,
-#temperature,
-#memory,
-#disk,
-#battery {
-  padding: 0 6px;
+#workspaces button:hover {
+  background: #555555;
+  box-shadow: none;
+}
+
+#workspaces button.focused,
+#workspaces button.focused:hover {
+  background: #3465a4;
 }
 
 .warning {
-  color: #ffff00;
+  color: #f9e2af;
 }
 
 .critical {
-  color: #ff0000;
+  color: #f38ba8;
+}
+
+#clock.ca {
+  background: #555555;
 }
