@@ -29,7 +29,7 @@ fi
 
 # Enable color prompt if terminal supports it
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color|*-256color|foot|foot-*) color_prompt=yes;;
 esac
 
 if [ -n "$force_color_prompt" ]; then
@@ -40,10 +40,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+__ps1_git_branch() {
+    command -v git >/dev/null 2>&1 || return
+    local branch
+    branch=$(git symbolic-ref --short HEAD 2>/dev/null) || return
+    printf ' (%s)' "$branch"
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;36m\]$(__ps1_git_branch)\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__ps1_git_branch)\$ '
 fi
 unset color_prompt force_color_prompt
 

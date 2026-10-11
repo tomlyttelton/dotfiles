@@ -13,37 +13,38 @@ window#waybar {
 }
 
 .modules-right > widget {
-  margin: 0 2px;
+  margin: 0 4px;
+  padding-right: 4px;
+}
+
+.modules-right > widget:not(:last-child) {
+  border-right: 1px solid #555555;
 }
 
 .modules-right > widget > * {
-  padding: 4px 6px;
+  padding: 4px 10px;
 }
 
 #workspaces button {
   padding: 4px;
-  background: transparent;
-  color: #ffffff;
+  background: #222222;
+  color: #888888;
   box-shadow: none;
   text-shadow: none;
 }
 
 #workspaces button.visible {
-  background: #555555;
+  background: #5f676a;
+  color: #ffffff;
+}
+
+#workspaces button.focused {
+  background: #285577;
+  color: #ffffff;
 }
 
 #workspaces button.urgent {
   color: #f38ba8;
-}
-
-#workspaces button:hover {
-  background: #555555;
-  box-shadow: none;
-}
-
-#workspaces button.focused,
-#workspaces button.focused:hover {
-  background: #3465a4;
 }
 
 .warning {
@@ -54,6 +55,8 @@ window#waybar {
   color: #f38ba8;
 }
 
+/* Active timezone */
 #clock.ca {
-  background: #555555;
+  background: #34495e;
+  color: #ffffff;
 }

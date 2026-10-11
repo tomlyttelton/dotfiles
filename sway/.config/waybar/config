@@ -17,7 +17,7 @@
     "tray"
   ],
   "sway/workspaces": {
-    "format": "[{index}:{name}]"
+    "format": "{index}:{name}"
   },
   "sway/mode": {
     "format": "{}",
@@ -27,13 +27,15 @@
     "interval": 5,
     "format-ethernet": "E:{ipaddr}",
     "format-wifi": "WIFI:{essid} ({signalStrength}%)",
-    "format-disconnected": "",
-    "format-disabled": "",
+    "format-disconnected": "NET:Disconnected",
+    "format-disabled": "NET:Disabled",
     "tooltip": false
   },
   "cpu": {
     "interval": 5,
-    "format": "CPU:{usage}%",
+    "format": "",
+    "format-warning": "CPU:{usage}%",
+    "format-critical": "CPU:{usage}%",
     "states": {
       "warning": 75,
       "critical": 90
@@ -48,13 +50,15 @@
     ],
     "input-filename": "temp1_input",
     "critical-threshold": 75,
-    "format": "T:{temperatureC}°C",
+    "format": "",
     "format-critical": "T:{temperatureC}°C",
     "tooltip": false
   },
   "memory": {
     "interval": 5,
-    "format": "MEM:{used:.1f}/{total:.1f}G",
+    "format": "",
+    "format-warning": "MEM:{used:.1f}/{total:.1f}G",
+    "format-critical": "MEM:{used:.1f}/{total:.1f}G",
     "states": {
       "warning": 90,
       "critical": 95
@@ -64,7 +68,9 @@
   "disk": {
     "interval": 30,
     "path": "/",
-    "format": "DISK:{free}",
+    "format": "",
+    "format-warning": "DISK:{free}",
+    "format-critical": "DISK:{free}",
     "states": {
       "warning": 90,
       "critical": 95
@@ -79,13 +85,13 @@
   },
   "clock#ca": {
     "timezone": "America/Los_Angeles",
-    "format": "[{:%a %d %b %H:%M} 🏴󠁵󠁳󠁣󠁡󠁿]",
+    "format": "{0:%a %d %b} 🏴󠁵󠁳󠁣󠁡󠁿 {0:%H:%M}",
     "interval": 10,
     "tooltip": false
   },
   "clock#uk": {
     "timezone": "Europe/London",
-    "format": "[{:%a %H:%M} 🇬🇧]",
+    "format": "{0:%a %d %b} 🇬🇧 {0:%H:%M}",
     "interval": 10,
     "tooltip": false
   },
